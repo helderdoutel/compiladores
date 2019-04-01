@@ -2,9 +2,11 @@ import java.io.*;
 
 class Parser{
     static int lookahead;
+    static int contador;
     
     public Parser() throws IOException{
         lookahead = System.in.read();
+        contador = 0;
     }
     
     void expr() throws IOException {
@@ -15,7 +17,14 @@ class Parser{
     }
     
     void match(int t) throws IOException{
-        if(lookahead == t) lookahead = System.in.read();
+        if(lookahead == t){
+            if(lookahead == '('){
+                contador++;
+            }else if(lookahead == ')'){
+                contador--;
+            }
+            lookahead = System.in.read();
+        }
         else throw new Error("Syntax error");
     }
     
@@ -24,6 +33,13 @@ class Parser{
 public class Main{
     public static void main(String[] args) throws IOException{
         Parser parser = new Parser();
-        parser.expr(); System.out.println("True");
+        parser.expr();
+        if(parser.contador != 0){
+            throw new Error("Syntax error");
+        }
+        if(parser.lookahead != 10 && parser.lookahead != 13 && parser.lookahead != -1){
+            throw new Error("Syntax error");
+        }
+        System.out.println("True");
     }
 }
