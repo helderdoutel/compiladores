@@ -20,14 +20,13 @@ namespace Compiladores
         public void Inicio()
         {
             S();
-            Console.WriteLine(_lookahead);
             if (_lookahead != 13)
             {
-                Console.WriteLine("Entrada invalida");
+                Console.WriteLine(false);
             }
             else
             {
-                Console.WriteLine("Entrada valida");
+                Console.WriteLine(true);
             }
         }
 
