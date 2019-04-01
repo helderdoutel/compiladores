@@ -1,0 +1,7 @@
+Implemente o analisador léxico
+Extenda o analisador para
+
+
+a) remover comentários // e /*  ...  */
+b) reconhecer os operadores < <= == != >= >
+c) reconhecer ponto flutuante:  2.  3.15  .5
