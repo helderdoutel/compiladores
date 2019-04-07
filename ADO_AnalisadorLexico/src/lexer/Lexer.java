@@ -29,6 +29,27 @@ public class Lexer {
 				break;
 		}
 		
+		if(peek == '/') {
+			peek = (char)System.in.read();
+			int linha_coment = line;
+			if(peek == '/') {
+				do {
+					peek = (char)System.in.read();
+					if( peek == '\n')line = line + 1;
+				}while(linha_coment == line);
+			}else if(peek == '*') {
+				while(true){
+					peek = (char)System.in.read();
+					if( peek == '*') {
+						peek = (char)System.in.read();
+						if( peek == '/') {
+							break;
+						}
+					}
+				}
+			}
+		}
+		
 		if( Character.isDigit(peek) || peek == '.') {
 			boolean trigger = false;//ativa ao encontrar delimitador decimal
 			int v = 0;
