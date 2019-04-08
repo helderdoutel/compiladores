@@ -90,20 +90,83 @@ public class Lexer {
 			
 		}
 		
+
+		StringBuffer b = new StringBuffer();
+		String s;
+		Word w;
+		
 		if( Character.isLetter(peek)) {
-			StringBuffer b = new StringBuffer();
+		
 			do {
 				b.append(peek);
 				peek = (char)System.in.read();
 			}while( Character.isLetterOrDigit(peek));
 			
-			String s = b.toString();
-			Word w = (Word)words.get(s);
+			s = b.toString();
+			w = (Word)words.get(s);
 			if( w != null) 
 				return w;
 			w = new Word (Tag.ID, s);
 			words.put(s,w);
 			return w;
+		}
+		
+		
+		if(peek == '<') {
+			b.append('<');
+			peek = (char)System.in.read();
+			if(peek == '=') {
+				b.append('=');
+			}
+			s = b.toString();
+			w = (Word)words.get(s);
+			if( w != null) 
+				return w;
+			w = new Word (Tag.ID, s);
+			words.put(s,w);
+			return w;
+		}
+		if(peek == '=') {
+			peek = (char)System.in.read();
+			if(peek == '=') {
+				b.append('=');
+				b.append('=');
+			}
+			s = b.toString();
+			w = (Word)words.get(s);
+			if( w != null) 
+				return w;
+			w = new Word (Tag.ID, s);
+			words.put(s,w);
+			return w;
+		}
+		if(peek == '>') {
+			b.append('>');
+			peek = (char)System.in.read();
+			if(peek == '=') {
+				b.append('=');
+			}
+			s = b.toString();
+			w = (Word)words.get(s);
+			if( w != null) 
+				return w;
+			w = new Word (Tag.ID, s);
+			words.put(s,w);
+			return w;
+		}
+		if(peek == '!') {
+			peek = (char)System.in.read();
+			if(peek == '=') {
+				b.append('!');
+				b.append('=');
+				s = b.toString();
+				w = (Word)words.get(s);
+				if( w != null) 
+					return w;
+				w = new Word (Tag.ID, s);
+				words.put(s,w);
+				return w;
+			}
 		}
 		
 		Token t = new Token(peek);

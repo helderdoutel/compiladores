@@ -9,7 +9,9 @@ public class Main {
 			while(true) {
 				t = lexer.scan();				
 				if(t instanceof Word) {
-					System.out.println("Token "+((Word) t).lexeme);
+					if(!((Word) t).lexeme.equals("")) {
+						System.out.println("Token "+((Word) t).lexeme);
+					}
 				}else if(t instanceof Num) {
 					System.out.println("Token " + ((Num)t).value);
 				}else if(t instanceof FloatNum) {
