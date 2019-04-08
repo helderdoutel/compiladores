@@ -77,7 +77,7 @@ public class Lexer {
 			}while(Character.isDigit(peek));
 			
 			
-			if( v > 0 && f == 0) { // caso n e n.
+			if( v >= 0 && f == 0) { // caso n e n.
 				if(trigger)
 					return new FloatNum(Double.valueOf(String.valueOf(v)+"."+ String.valueOf(f)));
 				else
